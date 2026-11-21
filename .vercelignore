@@ -1,0 +1,6 @@
+deploy/
+tests/
+results/
+*.docx
+*.pptx
+*.ipynb

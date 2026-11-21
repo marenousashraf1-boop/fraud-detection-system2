@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "app.py": {
+      "excludeFiles": "{deploy/**,tests/**,results/**,*.docx,*.pptx,*.ipynb,*.md,generate_sample_data.py,train_model.py,check_setup.py}"
+    }
+  }
+}

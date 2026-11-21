@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+results/*.csv
+.env
+kaggle.json
+*.zip
+.ipynb_checkpoints/

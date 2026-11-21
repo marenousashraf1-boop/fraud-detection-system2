@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flexible Fraud Detector — AI Transaction Analysis</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">◈</span> FraudGuard <small>AI-Powered Flexible Financial Fraud Detection</small></div>
+  <a class="ghost" href="#how">How it works</a>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">CLOUD COMPUTING PROJECT · 2026/2027</p>
+    <h1>Upload any transactions file.<br>Get a fraud report in seconds.</h1>
+    <p class="lead">Column names don't have to match. The system understands your CSV, maps it automatically,
+      scores every transaction with a trained model, and returns a downloadable report.</p>
+  </section>
+
+  <section class="card" id="upload">
+    <div id="drop" class="drop" tabindex="0" role="button" aria-label="Choose a CSV file">
+      <div class="drop-icon">⇪</div>
+      <p><b>Drop a CSV here</b> or click to browse</p>
+      <p class="muted" id="fname">No file selected</p>
+      <input id="file" type="file" accept=".csv" hidden>
+    </div>
+    <div class="controls">
+      <label class="thr">Fraud threshold: <b id="thrv">0.50</b>
+        <input id="thr" type="range" min="0.05" max="0.95" step="0.05" value="0.5"></label>
+      <div class="btns">
+        <button id="go" class="btn" disabled>Analyze</button>
+        <button id="sample" class="btn sec" type="button">Try a sample file</button>
+      </div>
+    </div>
+    <p id="msg" class="msg" role="alert" hidden></p>
+  </section>
+
+  <section id="results" hidden>
+    <div class="card">
+      <div class="row-between">
+        <h2>Results <span class="muted" id="rfile"></span></h2>
+        <a id="dl" class="btn" href="#">Download report (CSV)</a>
+      </div>
+      <div class="stats" id="stats"></div>
+      <p class="muted" id="modelline"></p>
+    </div>
+    <div class="card" id="warnbox" hidden><h2>Notes about your data</h2><ul id="warns"></ul></div>
+    <div class="card" id="evalbox" hidden><h2>Model quality on this file <span class="muted">(labels were found)</span></h2><div class="stats" id="evalstats"></div></div>
+    <div class="grid2">
+      <div class="card"><h2>Fraud probability distribution</h2><div id="hist" class="hist"></div><div id="hlab" class="hlab"></div><p class="muted">Share of transactions per probability bucket (log-scaled bars).</p></div>
+      <div class="card"><h2>By transaction type</h2><div id="bytype"></div></div>
+    </div>
+    <div class="card"><h2>Top suspicious transactions</h2><div class="tw" id="top"></div></div>
+    <div class="card"><h2>How your columns were understood</h2><div class="tw" id="map"></div><p class="muted" id="unmapped"></p>
+      <details><summary id="repsum">Data understanding report</summary><div class="tw" id="rep"></div></details></div>
+  </section>
+
+  <section class="card" id="how">
+    <h2>How it works</h2>
+    <img class="fig" src="static/images/pipeline.png" alt="Pipeline: CSV, data understanding, column mapping, feature engineering, model, report">
+    <ol class="steps">
+      <li><b>Understand</b> — rows, types, missing values and duplicates are analyzed.</li>
+      <li><b>Map</b> — synonyms, fuzzy matching and value checks convert any layout to a standard schema.</li>
+      <li><b>Score</b> — an XGBoost model returns a fraud probability for every transaction.</li>
+      <li><b>Report</b> — statistics on screen and a CSV with <code>Prediction</code> and <code>Fraud_Probability</code>.</li>
+    </ol>
+    <p class="muted">Required columns: transaction type, amount, sender balance before and after. API: <code>POST /api/predict</code> with JSON.</p>
+  </section>
+</main>
+<footer>Trained on PaySim (synthetic data). Scores do not guarantee accuracy on real bank data.</footer>
+<script src="main.js"></script>
+</body>
+</html>
